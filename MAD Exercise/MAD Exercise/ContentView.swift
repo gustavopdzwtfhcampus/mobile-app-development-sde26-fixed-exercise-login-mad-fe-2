@@ -32,6 +32,8 @@ struct ContentView: View {
                     .textFieldStyle(.roundedBorder)
                     .textContentType(.emailAddress)
                     .keyboardType(.emailAddress)
+                    .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled()
                     .submitLabel(.next)
                     .focused($focusedField, equals: .email)
                     .onSubmit {
