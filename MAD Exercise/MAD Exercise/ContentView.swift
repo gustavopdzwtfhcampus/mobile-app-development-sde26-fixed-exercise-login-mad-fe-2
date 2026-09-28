@@ -8,12 +8,32 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var email: String = ""
+    @State private var password: String = ""
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        VStack(alignment: .leading, spacing: 16) {
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Email")
+                TextField("yourname@example.com", text: $email)
+                    .textFieldStyle(.roundedBorder)
+            }
+
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Password")
+                TextField("Your password", text: $password)
+                    .textFieldStyle(.roundedBorder)
+            }
+
+            HStack {
+                Spacer()
+                Button("Login") {
+                }
+                Spacer()
+            }
+            .padding(.top, 8)
+
+            Spacer()
         }
         .padding()
     }
