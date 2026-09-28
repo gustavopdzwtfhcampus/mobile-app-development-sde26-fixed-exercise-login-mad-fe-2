@@ -21,6 +21,7 @@ struct ContentView: View {
     @State private var showValidationError: Bool = false
     @State private var showLoginResultAlert: Bool = false
     @State private var loginResultMessage: String = ""
+    @State private var isLoggingIn: Bool = false
     @FocusState private var focusedField: Field?
 
     var body: some View {
@@ -68,6 +69,7 @@ struct ContentView: View {
             Spacer()
         }
         .padding()
+        .disabled(isLoggingIn)
         .alert("Login", isPresented: $showLoginResultAlert) {
             Button("OK", role: .cancel) {
             }
@@ -82,6 +84,7 @@ struct ContentView: View {
             return
         }
         showValidationError = false
+        isLoggingIn = true
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             if email == validEmail && password == validPassword {
@@ -89,6 +92,7 @@ struct ContentView: View {
             } else {
                 loginResultMessage = "Email or password is incorrect."
             }
+            isLoggingIn = false
             showLoginResultAlert = true
         }
     }
