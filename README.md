@@ -1,6 +1,8 @@
 # mad-fe-2
 Login Screen Exercise
 
+![Login screen layout](loginScreen.png)
+
 ## Instructions, Requirements and Hints
 
 ### Setting up the project
