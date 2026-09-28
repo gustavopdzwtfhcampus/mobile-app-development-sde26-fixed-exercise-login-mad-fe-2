@@ -66,6 +66,15 @@ struct ContentView: View {
             }
             .padding(.top, 8)
 
+            if isLoggingIn {
+                HStack {
+                    Spacer()
+                    ProgressView()
+                    Spacer()
+                }
+                .padding(.top, 8)
+            }
+
             Spacer()
         }
         .padding()
