@@ -15,6 +15,7 @@ struct ContentView: View {
 
     @State private var email: String = ""
     @State private var password: String = ""
+    @State private var showValidationError: Bool = false
     @FocusState private var focusedField: Field?
 
     var body: some View {
@@ -44,6 +45,12 @@ struct ContentView: View {
                     }
             }
 
+            if showValidationError {
+                Text("Please fill in both email and password.")
+                    .foregroundStyle(.red)
+                    .font(.footnote)
+            }
+
             HStack {
                 Spacer()
                 Button("Login") {
@@ -59,6 +66,11 @@ struct ContentView: View {
     }
 
     private func login() {
+        guard !email.isEmpty, !password.isEmpty else {
+            showValidationError = true
+            return
+        }
+        showValidationError = false
     }
 }
 
