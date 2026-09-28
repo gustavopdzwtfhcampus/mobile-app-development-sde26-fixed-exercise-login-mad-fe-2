@@ -13,9 +13,14 @@ struct ContentView: View {
         case password
     }
 
+    private let validEmail = "user@example.com"
+    private let validPassword = "password123"
+
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var showValidationError: Bool = false
+    @State private var showLoginResultAlert: Bool = false
+    @State private var loginResultMessage: String = ""
     @FocusState private var focusedField: Field?
 
     var body: some View {
@@ -63,6 +68,12 @@ struct ContentView: View {
             Spacer()
         }
         .padding()
+        .alert("Login", isPresented: $showLoginResultAlert) {
+            Button("OK", role: .cancel) {
+            }
+        } message: {
+            Text(loginResultMessage)
+        }
     }
 
     private func login() {
@@ -71,6 +82,15 @@ struct ContentView: View {
             return
         }
         showValidationError = false
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            if email == validEmail && password == validPassword {
+                loginResultMessage = "You are now logged in."
+            } else {
+                loginResultMessage = "Email or password is incorrect."
+            }
+            showLoginResultAlert = true
+        }
     }
 }
 
